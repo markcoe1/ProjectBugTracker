@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ProjectBugTracker.Models.RolesViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Role Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleName)
+        </td>
+        <td>
+            @Html.ActionLink("Assign Users", "AssignRoles", "RolesManager", new { id = item.RoleId }, null) |
+            @Html.ActionLink("View/Unassign Users", "UnassignRoles", "RolesManager", new { id = item.RoleId}, null)
+
+        </td>
+    </tr>
+}
+
+</table>

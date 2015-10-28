@@ -1,0 +1,212 @@
+﻿@model ProjectBugTracker.Models.UserViewModel
+@using ProjectBugTracker.Models
+
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Dashboard: @Html.DisplayFor(modelItem => modelItem.DisplayName)</h2>
+@if (ViewContext.HttpContext.User.IsInRole("Admin"))
+{
+    <div class="row">
+        <div class="row">
+            <div class="col-md-4" style="background-color:aliceblue">
+                <h2 style="text-align:center">Profile</h2>
+                <p>@Html.ActionLink("Welcome: " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</p>
+                <p>Name: @Html.DisplayFor(modelItem => modelItem.FirstName) @Html.DisplayFor(modelItem => modelItem.LastName)|Email: @Html.DisplayFor(modelItem => modelItem.Email)</p>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <h2 style="text-align:center">Projects</h2>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-default">@Html.ActionLink("View All", "Index", "Projects")</button>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-default">@Html.ActionLink("Project Manager", "Index", "ProjectManager")</button>
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2 style="text-align:center">Users</h2>
+            <button class="btn btn-default">@Html.ActionLink("Roles Manager", "Index", "RolesManager")</button>
+        </div>
+        <div class="col-md-8" style="background-color:aliceblue">
+            <h2 style="text-align:center">Tickets</h2>
+            <button class="btn btn-default">@Html.ActionLink("View All", "Index", "Tickets")</button>
+        </div>
+    </div>
+}
+else if (User.IsInRole("ProjectManager"))
+{
+    <div class="row">
+        <div class="row">
+            <div class="col-md-4" style="background-color:aliceblue">
+                <h2 style="text-align:center">Profile</h2>
+                <p>@Html.ActionLink("Welcome: " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</p>
+                <p>Name: @Html.DisplayFor(modelItem => modelItem.FirstName) @Html.DisplayFor(modelItem => modelItem.LastName)|Email:@Html.DisplayFor(modelItem => modelItem.Email)</p>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <h2 style="text-align:center">Projects</h2>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                Assigned Project
+                            </th>
+
+                        </tr>
+
+                        @foreach (var item in Model.UserProjects)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                    <div class="col-md-6">
+                        <button class="btn btn-default">@Html.ActionLink("View All", "Index", "Projects")</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-default">@Html.ActionLink("Project Manager", "Index", "ProjectManager")</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2 style="text-align:center">Users</h2>
+            <button class="btn btn-default"></button>
+        </div>
+        <div class="col-md-8" style="background-color:aliceblue">
+            <h2 style="text-align:center">Tickets</h2>
+            <button class="btn btn-default">@Html.ActionLink("View All", "Index", "Tickets")</button>
+        </div>
+    </div>
+}
+else if (User.IsInRole("Developer"))
+{
+
+    <div class="row">
+        <div class="col-md-4" style="background-color:aliceblue">
+            <h2 style="text-align:center">Profile</h2>
+            <p>@Html.ActionLink("Welcome: " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</p>
+            <p>Name: @Html.DisplayFor(modelItem => modelItem.FirstName) @Html.DisplayFor(modelItem => modelItem.LastName)|Email:@Html.DisplayFor(modelItem => modelItem.Email)</p>
+        </div>
+        <div class="col-md-8" style="background-color:aliceblue">
+            <h2 style="text-align:center">Projects</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="projtable" class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Assigned Project
+                                </th>
+
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model.UserProjects)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+
+                    </table>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+
+                    <button class="btn btn-default">@Html.ActionLink("View All", "Index", "Projects")</button>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-default"></button>
+                </div>
+
+            </div>
+
+            </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2 style="text-align:center">Users</h2>
+            <button class="btn btn-default"></button>
+        </div>
+        <div class="col-md-8" style="background-color:aliceblue">
+            <h2 style="text-align:center">Tickets</h2>
+            <table id="tictable" class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Assigned Ticket
+                        </th>
+                        <th>
+                            Project
+                        </th>
+                        <th>
+                            Type
+                        </th>
+                        <th>
+                            Priority
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.TicketsAssigned)
+                {
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Projects.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TicketType.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TicketPrioritys.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TicketStatuses.Name)
+                        </td>
+                    </tr>
+                </tbody>
+                }
+
+            </table>
+
+            <button class="btn btn-default">@Html.ActionLink("View All", "Index", "Tickets")</button>
+        </div>
+    </div>
+}
+<script>
+$('#tictable').DataTable();
+    $('#projtable').DataTable();
+</script>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ProjectBugTracker.Models.Project>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Project Users</h2>
+@if (User.IsInRole("Admin"))
+{
+<table class="table">
+    <tr>
+        <th>
+            Project Name
+        </th>
+        <th>
+            Developers
+        </th>
+        <th>
+            Project Manager
+        </th>
+    </tr>
+   
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Assign Users", "AssignUsers", "ProjectManager", new { id = item.Id }, null)|
+            @Html.ActionLink("View/Unassign Users", "UnassignUsers", "ProjectManager", new { id = item.Id }, null)
+          
+        </td>
+        <td>
+            @Html.ActionLink("Assign Project Manager", "AssignProjectManager", "ProjectManager", new { id = item.Id }, null)|
+            @Html.ActionLink("View/Unassign Project Manager", "UnassignProjectManager", "ProjectManager", new { id = item.Id }, null)
+        </td>
+    </tr>
+}
+
+</table>
+}
+else if (User.IsInRole("ProjectManager"))
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                Developers
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Assign Users", "AssignUsers", "ProjectManager", new { id = item.Id }, null)|
+                    @Html.ActionLink("View/Unassign Users", "UnassignUsers", "ProjectManager", new { id = item.Id }, null)
+
+                </td>
+            </tr>
+        }
+
+    </table>
+}

@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Landing";
+}
+
+<link href="~/AnimatedHeaderBackgrounds/css/normalize.css" rel="stylesheet" />
+<link href="~/AnimatedHeaderBackgrounds/css/component.css" rel="stylesheet" />
+<link href="~/AnimatedHeaderBackgrounds/css/demo.css" rel="stylesheet" />
+
+<link href='http://fonts.googleapis.com/css?family=Raleway:200,400,800' rel='stylesheet' type='text/css'>
+<link rel="shortcut icon" href="../favicon.ico">
+
+<!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+
+<body>
+    <div class="container demo-1">
+        <div class="content">
+            <div id="large-header" class="large-header">
+                <canvas id="demo-canvas"></canvas>
+                <h1 class="main-title">Connect <span class="thin">Three</span></h1>
+            </div>
+        </div>
+    </div><!-- /container -->
+</body>
+
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+
+
+<p>Use this area to provide additional information.</p>
+
+
+<script src="~/AnimatedHeaderBackgrounds/js/TweenLite.min.js"></script>
+
+@section Scripts {
+    <script src="~/AnimatedHeaderBackgrounds/js/demo-1.js"></script>
+    <script src="~/AnimatedHeaderBackgrounds/js/EasePack.min.js"></script>
+    <script src="~/AnimatedHeaderBackgrounds/js/rAF.js"></script>
+    <script src="~/AnimatedHeaderBackgrounds/js/TweenLite.min.js"></script>
+}
