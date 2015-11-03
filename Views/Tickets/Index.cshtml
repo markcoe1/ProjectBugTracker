@@ -28,9 +28,6 @@
                 @Html.DisplayNameFor(model => model.Updated)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UpdateReason)
-            </th>
-            <th>
                 Type
             </th>
             <th>
@@ -40,7 +37,7 @@
                 Status
             </th>
             <th>
-                Owner User
+                Owner
             </th>
             <th>
                 Assigned To
@@ -48,50 +45,54 @@
             <th></th>
         </tr>
     </thead>
-@foreach (var item in Model)
-{
     <tbody>
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Projects.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Created)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Updated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateReason)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TicketType.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TicketPrioritys.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TicketStatuses.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OwnerUser.DisplayName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AssignedUser.DisplayName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    </tbody>
-}
+        @foreach (var item in Model)
+        {
 
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Projects.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Updated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketType.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketPrioritys.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketStatuses.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OwnerUser.DisplayName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssignedUser.DisplayName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                    @Html.ActionLink("Comments", "Index", "TicketComments")
+                    @Html.ActionLink("Attachments","Index","TicketAttachments")
+                </td>
+            </tr>
+
+        }
+</tbody>
 </table>
+
+<script>
+    $('#TicTable').DataTable();
+</script>

@@ -104,3 +104,35 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<div id="comments" class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
+    <br />
+    <br />
+    @Html.ActionLink("Add Comment", "Create", "TicketComments", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-warning" })
+
+    <div class="comments-num">
+        <hr>
+        <h4><span class="fa fa-comment"></span></h4>
+        <hr>
+    </div>
+    @foreach (var c in Model.TicketComments)
+    {
+        <div class="comment-lists">
+            <ul class="media-list">
+
+                <li class="commenter media">
+
+                    <div class="media-body">
+                        <div class="media-heading">
+                            <span class="commenter-name">@c.UserId</span>
+                            <span class="comment-date">@c.Created</span>
+                            <span style="text-align:right"><a class="btn btn-xs btn1" href="#">Replay</a></span>
+                        </div>
+                        <p>@Html.Raw(HttpUtility.HtmlDecode(c.Comment))</p>
+                        <hr>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    }
+</div>

@@ -13,7 +13,7 @@ namespace ProjectBugTracker.Models
             this.TicketAttachments = new HashSet<TicketAttachment>();
             this.TicketComments = new HashSet<TicketComment>();
                     this.TicketHistorys = new HashSet<TicketHistory>();
-                    this.TicketNotifications = new HashSet<TicketNotification>();
+
         }
 
             public int Id { get; set; }
@@ -41,6 +41,6 @@ namespace ProjectBugTracker.Models
             public virtual ICollection<TicketAttachment> TicketAttachments { get; set; }
             public virtual ICollection<TicketComment> TicketComments { get; set; }
             public virtual ICollection<TicketHistory> TicketHistorys { get; set; }
-            public virtual ICollection<TicketNotification> TicketNotifications { get; set; }
+
     }
 }

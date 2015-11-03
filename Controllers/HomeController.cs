@@ -24,6 +24,7 @@ namespace ProjectBugTracker.Controllers
             UserProjects = user.Project.ToList(),
             TicketsAssigned = user.TicketsAssigned.ToList(),
             TicketsOwned = user.TicketsOwned.ToList(),
+            TicketNotifications = db.TicketHistory.Where(h => h.NotificationSeen == false && h.UserId == user.Id).ToList()
         };
             return View(model);
         }

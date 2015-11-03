@@ -1,18 +1,15 @@
-﻿@model IEnumerable<ProjectBugTracker.Models.TicketHistories>
+﻿@model IEnumerable<ProjectBugTracker.Models.TicketHistory>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Ticket history</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Ticket.Title)
+            @Html.DisplayNameFor(model => model.Tickets.Title)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.OldValue)
@@ -32,7 +29,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Ticket.Title)
+            @Html.DisplayFor(modelItem => item.Tickets.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.OldValue)

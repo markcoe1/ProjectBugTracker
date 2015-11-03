@@ -11,6 +11,8 @@ namespace ProjectBugTracker.Models
         {
             this.Tickets = new HashSet<Ticket>();
             this._ApplicationUsers = new HashSet<ApplicationUser>();
+            this.TicketComment = new HashSet<TicketComment>();
+        
         }
          
         
@@ -19,5 +21,6 @@ namespace ProjectBugTracker.Models
 
         public virtual ICollection<Ticket> Tickets { get; set; }
         public virtual ICollection<ApplicationUser> _ApplicationUsers { get; set; }
+        public virtual ICollection<TicketComment> TicketComment { get; set; }
     }
 }

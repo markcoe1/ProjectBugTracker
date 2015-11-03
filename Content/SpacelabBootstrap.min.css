@@ -17,6 +17,66 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
+
+/* Hero Slider
+===========================================*/
+#hero{
+    background: #fff;
+    background-size: cover;
+    position: relative;
+}
+
+#menu{
+    z-index: 99999;
+    position: fixed;
+    cursor: pointer;
+    top: 0;
+}
+#menu>img{
+    width: 85px;
+    background: #111a45;
+    padding: 15px;
+}
+
+#hero .controls {
+    position: center;
+    bottom: 0;
+    right: 10px;
+}
+
+#hero .carousel-inner > .item > img, 
+#hero .carousel-inner > .item > a > img {
+    line-height: 1;
+    opacity: 0.2;
+    background-size: cover;
+    width: 100%;
+}
+
+#hero .carousel-caption {
+    right: 20%;
+    left: 20%;
+    top: 12%;
+    padding-bottom: 30px;
+}
+
+.controls img {
+    padding: 10px;
+    height: 50px;
+    transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+}
+.controls a{
+    display: inline-block;
+    padding: 10px 7px;
+}
+.controls a span:hover{
+    opacity: 0.6;
+}
+
+
 body {
   margin: 0;
 }

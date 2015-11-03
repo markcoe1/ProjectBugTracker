@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ProjectBugTracker.Models;
+using System.IO;
 
 namespace ProjectBugTracker.Controllers
 {
@@ -48,10 +49,35 @@ namespace ProjectBugTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TicketId,FilePath,Description,Created,UserId,FileUrl")] TicketAttachment ticketAttachments)
+        public ActionResult Create([Bind(Include = "Id,TicketId,FilePath,Description,Created,UserId,FileUrl")] TicketAttachment ticketAttachments, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                if (image != null && image.ContentLength > 0)
+                {
+                    //Check the file name to make sure its an image
+                    var ext = Path.GetExtension(image.FileName).ToLower();
+                    if (ext != ".png" && ext != ".jpg" && ext != ".jpeg" && ext != ".gif" && ext != ".bmp")
+
+                        ModelState.AddModelError("image", "Invalid Format.");
+
+                }
+
+            if (ModelState.IsValid)
+            {
+
+                if (image != null)
+                {
+                    //relative server path
+                    var filePath = "/Images/Attachments/";
+                    //path on physical drive on server
+                    var absPath = Server.MapPath("~" + filePath);
+                    //media url for relative path
+                    ticketAttachments.FileUrl = filePath + image.FileName;
+                    //save image
+                    image.SaveAs(Path.Combine(absPath, image.FileName));
+                }
+            }
                 db.TicketAttachments.Add(ticketAttachments);
                 db.SaveChanges();
                 return RedirectToAction("Index");
