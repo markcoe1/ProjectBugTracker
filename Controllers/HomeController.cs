@@ -41,5 +41,15 @@ namespace ProjectBugTracker.Controllers
 
             return View();
         }
+
+        public int? GetNotifications(string name) 
+        {
+            if (name !="" && name!= null)
+            {
+                var num = db.TicketHistory.Where(h => h.NotificationSeen == false && h.User.UserName == name).Count();
+                return num;
+            }
+            return null;
+        }
     }
 }

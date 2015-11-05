@@ -7,206 +7,585 @@
     ViewBag.Title = "Home Page";
 }
 
-<h2>Dashboard: @Html.DisplayFor(modelItem => modelItem.DisplayName)</h2>
+<link href="~/TexturedText/css/style2.css" rel="stylesheet" />
+<link href="~/TexturedText/css/normalize.css" rel="stylesheet" />
+
+
+<!--Admin Dashboard-->
 @if (ViewContext.HttpContext.User.IsInRole("Admin"))
 {
-    <div class="row">
-        <div class="row">
-            <div class="col-md-4" style="background-color:aliceblue">
-                <h2 style="text-align:center">Profile</h2>
-                <p>@Html.ActionLink("Welcome: " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</p>
-                <p>Name: @Html.DisplayFor(modelItem => modelItem.FirstName) @Html.DisplayFor(modelItem => modelItem.LastName)|Email: @Html.DisplayFor(modelItem => modelItem.Email)</p>
-            </div>
-            <div class="col-md-8">
-                <div class="row">
-                    <h2 style="text-align:center">Projects</h2>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-default">@Html.ActionLink("View All", "Index", "Projects")</button>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-default">@Html.ActionLink("Project Manager", "Index", "ProjectManager")</button>
-                </div>
-                <div class="col-md-4">
 
-                </div>
-            </div>
+    <section id="hero">
+        <!--Start Sliders -->
+        <div id="header-slider" class="carousel slide" data-ride="carousel">
+            <!-- Hero Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <!-- First Slider -->
+                    <img src="~/Images/LadyBug.jpg" />
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="prev"><span class="fa fa-angle-left  "></span></span><!-- Prev Control --></h2>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="art1">
+                                    <h1 style="text-align:center">@Html.DisplayFor(modelItem => modelItem.DisplayName) Dashboard</h1>
+                                    <h2 style="text-align:center">@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</h2>
+                                    </div>
+                                </div>
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="next"><span class="fa fa-angle-right"></span> <!-- Next Control --></span></h2>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-left:20px;padding-right:20px">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <h2 style="text-align:center">Notifications</h2>
 
-        </div>
-    </div>
+                                <table id="Anotitable" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Title
+                                            </th>
+                                            <th>
+                                                Property
+                                            </th>
+                                            <th>
+                                                Update
+                                            </th>
+                                            <th>
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2 style="text-align:center">Users</h2>
-            <button class="btn btn-default">@Html.ActionLink("Roles Manager", "Index", "RolesManager")</button>
-        </div>
-        <div class="col-md-8" style="background-color:aliceblue">
-            <h2 style="text-align:center">Tickets</h2>
-            <button class="btn btn-default">@Html.ActionLink("View All", "Index", "Tickets")</button>
-        </div>
-    </div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.TicketNotifications)
+                                        {
+
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Tickets.Title)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Property)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.NewValue)
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Mark as Seen", "MarkNotificationSeen", "Tickets", new { id = item.Id }, null) |
+                                                    @Html.ActionLink("View", "Details", "Tickets", new { id = item.TicketId }, null)
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                </div> <!-- End First Slider -->
+                <div class="item">
+                    <!-- Second Slider Projects -->
+                    <img src="~/Images/LadyBug.jpg" />
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="prev"><span class="fa fa-angle-left  "></span></span><!-- Prev Control --></h2>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="art1">
+                                    <h1 style="text-align:center">@Html.DisplayFor(modelItem => modelItem.DisplayName) Dashboard</h1>
+                                    <h2 style="text-align:center">@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="next"><span class="fa fa-angle-right"></span> <!-- Next Control --></span></h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h2 style="text-align:center">Projects</h2>
+                            <button style="text-align:center" class="btn btn-default">@Html.ActionLink("View All", "Index", "Projects")</button>
+                            <button style="text-align:center" class="btn btn-default">@Html.ActionLink("Project Manager", "Index", "ProjectManager")</button>
+                        </div>
+                    </div>
+                </div><!-- End Second Slider -->
+                <div class="item">
+                    <!-- Third SliderTickets  -->
+                    <img src="~/Images/LadyBug.jpg" />
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="prev"><span class="fa fa-angle-left  "></span></span><!-- Prev Control --></h2>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="art1">
+                                    <h1 style="text-align:center">@Html.DisplayFor(modelItem => modelItem.DisplayName) Dashboard</h1>
+                                    <h2 style="text-align:center">@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="next"><span class="fa fa-angle-right"></span> <!-- Next Control --></span></h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h2 style="text-align:center">Tickets</h2>
+                            <button style="text-align:center" class="btn btn-default">@Html.ActionLink("View All", "Index", "Tickets")</button>
+                        </div>
+                    </div>
+                </div> <!-- End Third Slider -->
+            </div> <!-- End Hero Wrapper for slides -->
+        </div> <!-- End Sliders -->
+    </section><!-- End Hero Slider -->
+
+    <!--ProjMan Dashboard-->
 }
 else if (User.IsInRole("ProjectManager"))
 {
-    <div class="row">
-        <div class="row">
-            <div class="col-md-4" style="background-color:aliceblue">
-                <h2 style="text-align:center">Profile</h2>
-                <p>@Html.ActionLink("Welcome: " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</p>
-                <p>Name: @Html.DisplayFor(modelItem => modelItem.FirstName) @Html.DisplayFor(modelItem => modelItem.LastName)|Email:@Html.DisplayFor(modelItem => modelItem.Email)</p>
-            </div>
-            <div class="col-md-8">
-                <div class="row">
-                    <h2 style="text-align:center">Projects</h2>
-                    <table class="table">
-                        <tr>
-                            <th>
-                                Assigned Project
-                            </th>
+    <section id="hero">
+        <!--Start Sliders -->
+        <div id="header-slider" class="carousel slide" data-ride="carousel">
+            <!-- Hero Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <!-- First Slider -->
+                    <img src="~/Images/LadyBug.jpg" />
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="prev"><span class="fa fa-angle-left  "></span></span><!-- Prev Control --></h2>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="art1">
+                                    <h1 style="text-align:center">@Html.DisplayFor(modelItem => modelItem.DisplayName) Dashboard</h1>
+                                    <h2 style="text-align:center">@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="next"><span class="fa fa-angle-right"></span> <!-- Next Control --></span></h2>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-left:20px;padding-right:20px">
+                            <div class="col-md-12">
+                                <h2 style="text-align:center">Notifications</h2>
 
-                        </tr>
+                                <table id="Anotitable" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Title
+                                            </th>
+                                            <th>
+                                                Property
+                                            </th>
+                                            <th>
+                                                Update
+                                            </th>
+                                            <th>
 
-                        @foreach (var item in Model.UserProjects)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                            </tr>
-                        }
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.TicketNotifications)
+                                        {
 
-                    </table>
-                    <div class="col-md-6">
-                        <button class="btn btn-default">@Html.ActionLink("View All", "Index", "Projects")</button>
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Tickets.Title)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Property)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.NewValue)
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Mark as Seen", "MarkNotificationSeen", "Tickets", new { id = item.Id }, null) |
+                                                    @Html.ActionLink("View", "Details", "Tickets", new { id = item.TicketId }, null)
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <button class="btn btn-default">@Html.ActionLink("Project Manager", "Index", "ProjectManager")</button>
+                </div> <!-- End First Slider -->
+                <div class="item">
+                    <!-- Second Slider Projects -->
+                    <img src="~/Images/LadyBug.jpg" />
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="prev"><span class="fa fa-angle-left  "></span></span><!-- Prev Control --></h2>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="art1">
+                                    <h1 style="text-align:center">@Html.DisplayFor(modelItem => modelItem.DisplayName) Dashboard</h1>
+                                    <h2 style="text-align:center">@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="next"><span class="fa fa-angle-right"></span> <!-- Next Control --></span></h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h2 style="text-align:center">Projects</h2>
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        Assigned Project
+                                    </th>
+
+                                </tr>
+
+                                @foreach (var item in Model.UserProjects)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                            <button style="text-align:center" class="btn btn-default">@Html.ActionLink("View All", "Index", "Projects")</button>
+                            <button class="btn btn-default">@Html.ActionLink("Project Manager", "Index", "ProjectManager")</button>
+
+                        </div>
                     </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <h2 style="text-align:center">Users</h2>
-            <button class="btn btn-default"></button>
-        </div>
-        <div class="col-md-8" style="background-color:aliceblue">
-            <h2 style="text-align:center">Tickets</h2>
-            <button class="btn btn-default">@Html.ActionLink("View All", "Index", "Tickets")</button>
-        </div>
-    </div>
+                </div><!-- End Second Slider -->
+                <div class="item">
+                    <!-- Third SliderTickets  -->
+                    <img src="~/Images/LadyBug.jpg" />
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="prev"><span class="fa fa-angle-left  "></span></span><!-- Prev Control --></h2>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="art1">
+                                    <h1 style="text-align:center">@Html.DisplayFor(modelItem => modelItem.DisplayName) Dashboard</h1>
+                                    <h2 style="text-align:center">@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="next"><span class="fa fa-angle-right"></span> <!-- Next Control --></span></h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h2 style="text-align:center">Tickets</h2>
+                            <button style="text-align:center" class="btn btn-default">@Html.ActionLink("View All", "Index", "Tickets")</button>
+                        </div>
+                    </div>
+                </div> <!-- End Third Slider -->
+            </div> <!-- End Hero Wrapper for slides -->
+        </div> <!-- End Sliders -->
+    </section><!-- End Hero Slider -->
+    
+    <!--Dev Dashboard-->
 }
 else if (User.IsInRole("Developer"))
 {
 
-    <div class="row">
-        <div class="col-md-4" style="background-color:aliceblue">
-            <h2 style="text-align:center">Profile</h2>
-            <p>@Html.ActionLink("Welcome: " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</p>
-            <p>Name: @Html.DisplayFor(modelItem => modelItem.FirstName) @Html.DisplayFor(modelItem => modelItem.LastName)|Email:@Html.DisplayFor(modelItem => modelItem.Email)</p>
-        </div>
-        <div class="col-md-8" style="background-color:aliceblue">
-            <h2 style="text-align:center">Projects</h2>
-            <div class="row">
-                <div class="col-md-12">
-                    <table id="projtable" class="table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Assigned Project
-                                </th>
+    <section id="hero">
+        <!--Start Sliders -->
+        <div id="header-slider" class="carousel slide" data-ride="carousel">
+            <!-- Hero Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <!-- First Slider -->
+                    <img src="~/Images/LadyBug.jpg" />
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="prev"><span style="color:#436c98" class="fa fa-angle-left fa-2x"></span></span><!-- Prev Control --></h2>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="art1">
+                                    <h1 style="text-align:center">@Html.DisplayFor(modelItem => modelItem.DisplayName) Dashboard</h1>
+                                    <h2 style="text-align:center">@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="next"><span style="color:#436c98" class="fa fa-angle-right fa-2x"></span> <!-- Next Control --></span></h2>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-left:20px;padding-right:20px">
+                            <div class="col-md-12">
+                                <h2 style="text-align:center">Notifications</h2>
 
-                            </tr>
-                        </thead>
-                        @foreach (var item in Model.UserProjects)
-                        {
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Name)
-                                    </td>
-                                </tr>
-                            </tbody>
-                        }
+                                <table id="Anotitable" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Title
+                                            </th>
+                                            <th>
+                                                Property
+                                            </th>
+                                            <th>
+                                                Update
+                                            </th>
+                                            <th>
 
-                    </table>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-4">
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.TicketNotifications)
+                                        {
 
-                    <button class="btn btn-default">@Html.ActionLink("View All", "Index", "Projects")</button>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-default"></button>
-                </div>
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Tickets.Title)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Property)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.NewValue)
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Mark as Seen", "MarkNotificationSeen", "Tickets", new { id = item.Id }, null) |
+                                                    @Html.ActionLink("View", "Details", "Tickets", new { id = item.TicketId }, null)
+                                                </td>
+                                            </tr>
 
-            </div>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End First Slider -->
+                <div class="item">
+                    <!-- Second Slider Projects -->
+                    <img src="~/Images/LadyBug.jpg" />
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="prev"><span class="fa fa-angle-left  "></span></span><!-- Prev Control --></h2>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="art1">
+                                    <h1 style="text-align:center">@Html.DisplayFor(modelItem => modelItem.DisplayName) Dashboard</h1>
+                                    <h2 style="text-align:center">@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="next"><span class="fa fa-angle-right"></span> <!-- Next Control --></span></h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <h2 style="text-align:center">Projects</h2>
+                                <table id="projtable" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Assigned Project
+                                            </th>
 
-            </div>
-    </div>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.UserProjects)
+                                        {
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2 style="text-align:center">Users</h2>
-            <button class="btn btn-default"></button>
-        </div>
-        <div class="col-md-8" style="background-color:aliceblue">
-            <h2 style="text-align:center">Tickets</h2>
-            <table id="tictable" class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            Assigned Ticket
-                        </th>
-                        <th>
-                            Project
-                        </th>
-                        <th>
-                            Type
-                        </th>
-                        <th>
-                            Priority
-                        </th>
-                        <th>
-                            Status
-                        </th>
-                    </tr>
-                </thead>
-                @foreach (var item in Model.TicketsAssigned)
-                {
-                <tbody>
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Projects.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TicketType.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TicketPrioritys.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TicketStatuses.Name)
-                        </td>
-                    </tr>
-                </tbody>
-                }
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Name)
+                                                </td>
+                                            </tr>
 
-            </table>
+                                        }
+                                    </tbody>
+                                </table>
+                                <button style="text-align:center" class="btn btn-default">@Html.ActionLink("View All", "Index", "Projects")</button>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                </div><!-- End Second Slider -->
+                <div class="item">
+                    <!-- Third SliderTickets  -->
+                    <img src="~/Images/LadyBug.jpg" />
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="prev"><span class="fa fa-angle-left  "></span></span><!-- Prev Control --></h2>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="art1">
+                                    <h1 style="text-align:center">@Html.DisplayFor(modelItem => modelItem.DisplayName) Dashboard</h1>
+                                    <h2 style="text-align:center">@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="next"><span class="fa fa-angle-right"></span> <!-- Next Control --></span></h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h2 style="text-align:center">Tickets</h2>
+                            <table id="tictable" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Assigned Ticket
+                                        </th>
+                                        <th>
+                                            Project
+                                        </th>
+                                        <th>
+                                            Type
+                                        </th>
+                                        <th>
+                                            Priority
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
 
-            <button class="btn btn-default">@Html.ActionLink("View All", "Index", "Tickets")</button>
-        </div>
-    </div>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.TicketsAssigned)
+                                    {
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Title)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Projects.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TicketType.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TicketPrioritys.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TicketStatuses.Name)
+                                            </td>
+
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+                            <button style="text-align:center" class="btn btn-default">@Html.ActionLink("View All", "Index", "Tickets")</button>
+                        </div>
+                    </div>
+                </div> <!-- End Third Slider -->
+            </div> <!-- End Hero Wrapper for slides -->
+        </div> <!-- End Sliders -->
+    </section><!-- End Hero Slider -->
+
+    
+    <!--Sub Dashboard-->
+}
+else if (User.IsInRole("Submitter"))
+{
+
+    <section id="hero">
+        <!--Start Sliders -->
+        <div id="header-slider" class="carousel slide" data-ride="carousel">
+            <!-- Hero Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <!-- First Slider -->
+                    <img src="~/Images/LadyBug.jpg" />
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="prev"><span class="fa fa-angle-left  "></span></span><!-- Prev Control --></h2>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="art1">
+                                    <h1 style="text-align:center">@Html.DisplayFor(modelItem => modelItem.DisplayName) Dashboard</h1>
+                                    <h2 style="text-align:center">@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <h2><span href="~/#header-slider" role="button" data-slide="next"><span class="fa fa-angle-right"></span> <!-- Next Control --></span></h2>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-left:20px;padding-right:20px">
+                            <div class="col-md-12">
+                                <h2 style="text-align:center">Submitted Tickets</h2>
+
+                                <table id="subtictable" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Submitted Ticket
+                                            </th>
+                                            <th>
+                                                Project
+                                            </th>
+                                            <th>
+                                                Type
+                                            </th>
+                                            <th>
+                                                Priority
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.TicketsOwned)
+                                        {
+
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Title)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Projects.Name)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TicketType.Name)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TicketPrioritys.Name)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TicketStatuses.Name)
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                                <button style="text-align:center" class="btn btn-default">@Html.ActionLink("View All", "Index", "Tickets")</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End First Slider -->
+            </div> <!-- End Hero Wrapper for slides -->
+        </div> <!-- End Sliders -->
+    </section><!-- End Hero Slider -->
+
+
+
+         
+
 }
 <script>
-$('#tictable').DataTable();
+    $('#tictable').DataTable();
     $('#projtable').DataTable();
+    $('#subtictable').DataTable();
+    $('#Anotitable').DataTable();
+    $('#notitable').DataTable();
 </script>

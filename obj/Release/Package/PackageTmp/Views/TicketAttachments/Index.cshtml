@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Ticket.Title)
+            Title
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FilePath)
@@ -35,7 +35,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Ticket.Title)
+            @Html.DisplayFor(modelItem => item.Tickets.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FilePath)
@@ -50,7 +50,7 @@
             @Html.DisplayFor(modelItem => item.UserId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FileUrl)
+            <img src="@item.FileUrl" class="img-responsive" width="60" height="60" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

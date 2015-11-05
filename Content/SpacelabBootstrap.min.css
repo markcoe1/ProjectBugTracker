@@ -33,35 +33,35 @@ html {
     top: 0;
 }
 #menu>img{
-    width: 85px;
+    width: 0;
     background: #111a45;
-    padding: 15px;
+    padding: 0;
 }
 
 #hero .controls {
     position: center;
     bottom: 0;
-    right: 10px;
+    right: 0;
 }
 
 #hero .carousel-inner > .item > img, 
 #hero .carousel-inner > .item > a > img {
     line-height: 1;
-    opacity: 0.2;
+    opacity: 1;
     background-size: cover;
     width: 100%;
 }
 
 #hero .carousel-caption {
-    right: 20%;
-    left: 20%;
-    top: 12%;
-    padding-bottom: 30px;
+    right: 0;
+    left: 0;
+    top: 0;
+    padding-bottom: 0;
 }
 
 .controls img {
-    padding: 10px;
-    height: 50px;
+    padding-bottom: 1000px;
+    height: 0;
     transition: all .5s ease-in-out;
     -webkit-transition: all .5s ease-in-out;
     -moz-transition: all .5s ease-in-out;
@@ -70,12 +70,19 @@ html {
 }
 .controls a{
     display: inline-block;
-    padding: 10px 7px;
+    padding: 260px;
 }
 .controls a span:hover{
     opacity: 0.6;
 }
-
+/* Rounded Corners */
+#rcorners1 {
+    background-color:rgba(221, 221, 221, 0.29);
+    border-radius: 15px 50px;
+    padding: 20px; 
+    width: 100%;
+    height: 100%;    
+}
 
 body {
   margin: 0;
@@ -1466,7 +1473,11 @@ a.bg-warning:focus {
   background-color: #f7ecb5;
 }
 .bg-danger {
-  background-color: #f2dede;
+  background-color: #b94a48;
+  top: -5px;
+  left: -8px;
+  position: relative;
+
 }
 a.bg-danger:hover,
 a.bg-danger:focus {
@@ -1647,8 +1658,8 @@ pre code {
   overflow-y: scroll;
 }
 .container {
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: inherit;
+  margin-left: inherit;
 }
 /*@media (min-width: 768px) {
   .container {
@@ -4336,8 +4347,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .container-fluid > .navbar-header,
 .container > .navbar-collapse,
 .container-fluid > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
+  margin-right: 0;
+  margin-left: 0;
 }
 @media (min-width: 768px) {
   .container > .navbar-header,
@@ -4396,7 +4407,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand,
   .navbar > .container-fluid .navbar-brand {
-    margin-left: -15px;
+    margin-left: 0;
   }
 }
 .navbar-toggle {
@@ -6527,7 +6538,7 @@ button.close {
   z-index: 10;
   padding-top: 20px;
   padding-bottom: 20px;
-  color: #ffffff;
+  /*color: #ffffff;*/
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }

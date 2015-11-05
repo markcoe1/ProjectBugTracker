@@ -1,0 +1,79 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald:700);
+
+.art {
+    width:auto;
+    margin: 0 auto;
+    padding: 5em;
+    text-transform: uppercase;
+    /*box-shadow: 50px 50px 20px rgba(0,0,0,0.1);
+    -webkit-transform: translateZ(-300px) translateY(-130px) rotateY(-30deg) rotateX(30deg) rotateZ(10deg);
+	transform: translateZ(-300px) translateY(-130px) rotateY(-30deg) rotateX(30deg) rotateZ(10deg);
+	-webkit-transition: -webkit-transform 1s ease;
+	transition: transform 1s ease;*/
+
+    background-image: url('../img/LadyBug.jpg');
+    background-size:100%;
+    /*outline: 1px solid transparent;*/
+}
+
+.art h1 {
+	font: 15em/100% "Oswald";
+	margin: 0 auto;
+	padding: 0;
+	text-align: center;
+	color: #436c98;
+	-webkit-mask-image: url(../img/splatter-mask_1.png); 
+}
+
+.art h2 {
+	font-size: 5em;
+	letter-spacing:-3px;
+	text-align: center; 
+	color: #436c98;
+	font-weight: 500;
+	letter-spacing: 2px;
+}
+
+.art h3 {
+	font-size: 1em;
+	letter-spacing:-3px;
+	text-align: center; 
+	color: #436c98;
+	font-weight: 500;
+	letter-spacing: 2px;
+}
+
+.art1 {
+    width:auto;
+    margin: 0 auto;
+    padding: 1em;
+    text-transform: uppercase;
+    /*box-shadow: 50px 50px 20px rgba(0,0,0,0.1);
+    -webkit-transform: translateZ(-300px) translateY(-130px) rotateY(-30deg) rotateX(30deg) rotateZ(10deg);
+	transform: translateZ(-300px) translateY(-130px) rotateY(-30deg) rotateX(30deg) rotateZ(10deg);
+	-webkit-transition: -webkit-transform 1s ease;
+	transition: transform 1s ease;*/
+
+    /*background-image: url('../img/LadyBug.jpg');
+    background-size:100%;*/
+    /*outline: 1px solid transparent;*/
+}
+
+    .art1 h1 {
+        font: 5em/100% "Oswald";
+        margin: 0 auto;
+        padding: 0;
+        text-align: center;
+        color: #436c98;
+        -webkit-mask-image: url('../img/UmbrellaStripes.jpg');
+
+    }
+
+.art1 h2 {
+	font-size: 1em;
+	letter-spacing:-3px;
+	text-align: center; 
+	color: #436c98;
+	font-weight: 500;
+	letter-spacing: 2px;
+}

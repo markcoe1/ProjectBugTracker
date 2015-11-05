@@ -93,7 +93,7 @@ namespace ProjectBugTracker.Controllers
                 tickets.OwnerUser = db.Users.Find(tickets.OwnerUserId);
                 db.Ticket.Add(tickets);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.AssignedToUserId = new SelectList(db.Users, "Id", "UserName", tickets.AssignedUserId);

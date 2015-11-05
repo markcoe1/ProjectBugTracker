@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjectBugTracker.Models.TicketComments>
+﻿@model IEnumerable<ProjectBugTracker.Models.TicketComment>
 
 @{
     ViewBag.Title = "Index";
@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Ticket.Title)
+            Title
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Comment)
@@ -29,7 +29,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Ticket.Title)
+            @Html.DisplayFor(modelItem => item.Tickets.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Comment)
